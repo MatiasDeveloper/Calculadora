@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-color: #dde1e7;
+}
+/*loader y animacion de inicio.*/
+#inicio {
+    width:100%;
+    height: 100%;
+    background-color: rgb(247, 242, 242);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+#inicio__bolita {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 100px;
+    border-radius: 50%;
+    background-color: #dde1e7;
+    box-shadow: inset -3px -3px 7px #ffffff73, 3px 3px 5px  inset rgba(94, 104, 121, .288);
+    animation: bounce .6s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    animation-iteration-count: infinite;
+    
+}
+@keyframes bounce {
+    from {
+        transform: translate3d(0, 0px, 0);
+    }
+    to {
+        transform: translate3d(0, 200px, 0);
+        height: 220px;
+    }
+}
+@keyframes abrir {
+    0% {
+        transform: translate3d(0, 0px, 0);
+    }
+    50% {
+        border-radius: 0px;
+    }
+    100% {
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+    }
+    
+}
+
+/*--------------CALCULADORA------------*/
+
+
+
+
+/*Container de calculadora*/
+.calculadora {
+    width: 600px;
+    height: 650px;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    border-radius: 10px;
+    padding: 5px;
+    display: grid;
+    grid-template-rows: 20% auto;
+    gap: 20px;
+}
+/*Header*/
+header {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 500px;
+    height: 40px;
+    box-shadow: -3px -3px 5px rgba(94, 104, 121, .288), 3px 3px 7px #ffffff73;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+}
+#githubLogo{transition: .2s;}
+#githubLogo:hover {transform: scale(1.2);}
+#gmail {
+    font-size: .8rem;
+    font-family: 'Lato';
+    color: rgba(94, 104, 121, .288);
+    text-shadow: 3px 3px 5px rgba(84, 89, 99, 0.288);
+}
+
+
+.calculadora__pantalla {
+    width: 100%;
+    padding: 0 50px;
+    border-radius: 10px;
+    box-shadow: inset -3px -3px 7px #ffffff73, 3px 3px 5px  inset rgba(94, 104, 121, .288);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Orbitron';
+    overflow-x: auto;
+}
+/*  Parte de botones  */
+.calculadora__botones {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 10px;
+    user-select: none;
+}
+
+.botones__boton {
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, .288);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .2s;
+    font-family: 'Lato';
+}
+.largo {
+    grid-column: 1/3;
+}
+.operadores {
+    background-color: #d6d8db;
+}
+.botones__boton:hover {
+    box-shadow: inset -3px -3px 7px #ffffff73, 3px 3px 5px  inset rgba(94, 104, 121, .288);
+}
+#borrar:active {
+    background-color: #fa4040b4;
+}
+
+
+/*    Media Query      */
+@media (max-width: 600px) {
+    /*Bloqueo el deslizamiento vertical ya que al ponerle 100vh de alto al body, se puede deslizar por mas que no haya nada.*/
+    body {
+        overflow-y: hidden;
+    }
+    /*si el ancho de la pantalla es menor a 600px, cancelo la animacion del loader.*/
+    #inicio {
+        display: none;
+    }
+    #inicio__bolita {
+        display: none;
+    }
+    /*Paso la info arriba de la pantalla de la calculadora y le doy flex-wrap.*/
+    header {
+        top: -30px;
+        left: 5px;
+        height: auto;
+        width: auto;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 3px 5px 0px 5px;
+    }
+    #githubLogo {
+        margin-right: 5px;
+    }
+    /*Le doy mejor estetica y espacios.*/
+    .calculadora {
+        gap: 80px;
+        padding-top: 30px;
+        box-shadow: none;
+        position: relative;
+    }
+    .botones__boton:hover {
+        box-shadow: inset 0px 0px 5px rgba(49, 49, 49, 0.438);
+        background-color: #dde1e7;
+    }
+}
